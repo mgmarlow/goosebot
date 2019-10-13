@@ -16,7 +16,7 @@ module Goosebot
     def search_options
       {
         tag: get_tag,
-        rating: 'pg-13',
+        rating: 'r',
         lang: 'en'
       }
     end
