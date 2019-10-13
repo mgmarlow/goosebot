@@ -1,1 +1,1 @@
-web: ruby ./exe/run.rb
+release: ruby ./exe/run.rb
