@@ -1,5 +1,7 @@
 # Goosebot
 
+[![Build Status](https://travis-ci.org/mgmarlow/goosebot.svg?branch=master)](https://travis-ci.org/mgmarlow/goosebot)
+
 A horrible discord bot.
 
 ## Usage
@@ -15,3 +17,14 @@ Run the bot:
 ```
 
 Post `!gooseme` in the channel to post a gif.
+
+## Deployment
+
+```
+git push heroku master
+heroku run:detached server
+```
+
+## TODO:
+
+- [ ] instagram support

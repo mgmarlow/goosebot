@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Goosebot
   class BotClient
     attr_accessor :bot
@@ -16,7 +18,7 @@ module Goosebot
     def configure_commands
       bot.message(content: '!gooseme') do |event|
         giphy_url = GiphyClient.new.call.bitly_url
-        message = event.respond giphy_url
+        event.respond giphy_url
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Goosebot
   class GiphyClient
     attr_accessor :client, :api_key
@@ -7,14 +9,12 @@ module Goosebot
       'taco',
       'pizza',
       'doughnut',
-      'grapefruit',
-      'melons',
-      'taco bell'
     ]
 
     MISC = [
-      'athletic butt',
-      'butts'
+      'butts',
+      'bouldering',
+      'yoga'
     ]
 
     def initialize
@@ -23,7 +23,7 @@ module Goosebot
     end
 
     def call
-      gifs = client.gifs_search_get(api_key, get_tag, search_options).data
+      gifs = client.gifs_search_get(api_key, tag, search_options).data
       gifs[rand(gifs.count)]
     end
 
@@ -33,13 +33,20 @@ module Goosebot
       {
         rating: 'r',
         limit: 100,
+        offset: offset,
         lang: 'en'
       }
     end
 
-    def get_tag
+    def tag
       items = FOODS.concat(MISC)
       items[rand(items.count)]
+    end
+
+    def offset
+      # Totally arbitrary, based on general counts of searches
+      # via https://developers.giphy.com/explorer
+      rand(500)
     end
   end
 end
