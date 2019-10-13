@@ -2,21 +2,19 @@ module Goosebot
   class GiphyClient
     attr_accessor :client, :api_key
 
-    FOODS = %w[
-      burrito
-      taco
-      pizza
-      doughnut
-      grapefruit
-      melons
+    FOODS = [
+      'burrito',
+      'taco',
+      'pizza',
+      'doughnut',
+      'grapefruit',
+      'melons',
       'taco bell'
     ]
 
-    MISC = %w[
-      'athletic butt'
-      butts
-      blonde
-      'female gymnast'
+    MISC = [
+      'athletic butt',
+      'butts'
     ]
 
     def initialize
@@ -25,7 +23,8 @@ module Goosebot
     end
 
     def call
-      client.gifs_search_get(api_key, get_tag, search_options)
+      gifs = client.gifs_search_get(api_key, get_tag, search_options).data
+      gifs[rand(gifs.count)]
     end
 
     private
@@ -33,6 +32,7 @@ module Goosebot
     def search_options
       {
         rating: 'r',
+        limit: 100,
         lang: 'en'
       }
     end
