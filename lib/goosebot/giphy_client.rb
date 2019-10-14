@@ -4,18 +4,18 @@ module Goosebot
   class GiphyClient
     attr_accessor :client, :api_key
 
-    FOODS = [
-      'burrito',
-      'taco',
-      'pizza',
-      'doughnut',
-    ]
+    FOODS = %w[
+      burrito
+      taco
+      pizza
+      doughnut
+    ].freeze
 
-    MISC = [
-      'butts',
-      'bouldering',
-      'yoga'
-    ]
+    MISC = %w[
+      butts
+      bouldering
+      yoga
+    ].freeze
 
     def initialize
       @client  = ::GiphyClient::DefaultApi.new
@@ -39,7 +39,7 @@ module Goosebot
     end
 
     def tag
-      items = FOODS.concat(MISC)
+      items = [].concat(FOODS).concat(MISC)
       items[rand(items.count)]
     end
 
