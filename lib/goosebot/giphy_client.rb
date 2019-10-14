@@ -33,7 +33,6 @@ module Goosebot
       {
         rating: 'r',
         limit: 100,
-        offset: offset,
         lang: 'en'
       }
     end
@@ -41,12 +40,6 @@ module Goosebot
     def tag
       items = [].concat(FOODS).concat(MISC)
       items[rand(items.count)]
-    end
-
-    def offset
-      # Totally arbitrary, based on general counts of searches
-      # via https://developers.giphy.com/explorer
-      rand(500)
     end
   end
 end
