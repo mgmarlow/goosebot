@@ -23,16 +23,18 @@ module Goosebot
     end
 
     def call
-      gifs = client.gifs_search_get(api_key, tag, search_options).data
-      gifs[rand(gifs.count)]
+      client.gifs_random_get(api_key, search_options)
+    rescue ::GiphyClient::ApiError => e
+      puts("Exception when calling DefaultApi->gifs_random_get: #{e}")
+      # "don't worry about it"
     end
 
     private
 
     def search_options
       {
+        tag: tag,
         rating: 'r',
-        limit: 100,
         lang: 'en'
       }
     end
