@@ -4,10 +4,5 @@
 require 'bundler/setup'
 require 'goosebot'
 
-$clients = {
-  giphy: Goosebot::GiphyClient.new,
-  bot: Goosebot::BotClient.new
-}
-
 require 'pry'
 Pry.start
