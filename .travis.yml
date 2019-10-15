@@ -1,7 +1,11 @@
----
 sudo: false
 language: ruby
 cache: bundler
 rvm:
   - 2.6.3
 before_install: gem install bundler -v 2.0.2
+deploy:
+  provider: heroku
+  app: pacific-everglades-98948
+  api_key:
+    secure: mJgX5ZJOnvCg/Bksg5+HWF0mUF4TyLvaIObL8l3QD6wYsVVgMprOXck3QK3w8yiCCjs+p008AxdIxgyXuG0Tdx00Gr8mOavG0d+P2Tiyd58vBlurPjTl7ZBW7c2hnfkXoqr3edFhnn2JptADAk9qFP17DGVZWs7C73vcSRWXAMFu9BRg1Y2aJX7AdHkUpgzpTRJbQnb0AKLJOalA72y2gTHWWZ4+/g+Fn9SL7xvj9fJ8ZtBt4q+5ZVDmg4SU9eGE+yi/Z6bmBjIEWt5gM8ZDfVEZlBgFPwFto85v1VU8PqcUkJuwhcbWkj1gYkrezPSRJBpl27IcPNzF+7qIqts1EyAU/RpXV9LjEEwFG2VYWIEoL1DVc13ZjcrrBl7dyQ9m/i1dY+kubiA0rG/UM6ELWQNe485V86MEnokB30Yidp8qscUbL5EWq2rMBdlDM0+r983/1hhPkjED//FCubws34ea5OxN/p5XXDVcoWJkqrx/yGSNCTm5VCzT1UfKyxAM1vIPiuv6e4palyvgvNIDD2aOLJaixVTdrhYlTaYKC/uNQCr3RRkNnd3Kc4EHFERobs4MlxgHdIsVS175eJeybpFf0yeHVlIWtTe+YuI6Ktyg2D08tfOSmwSofQPgoI6eOHDNdmoJA4iNaqZKSyTXjXUd5CsTxO9ukgBQSinQ8yw=
