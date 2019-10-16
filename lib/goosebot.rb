@@ -28,6 +28,10 @@ module Goosebot
         event.message.react(bot_client.emoji.sample.to_reaction)
       end
 
+      bot_client.message(from: 'Telyl') do |event|
+        event.respond("Am I a sentient being?")
+      end
+
       bot_client.run
     end
   end
