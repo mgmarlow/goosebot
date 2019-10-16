@@ -17,7 +17,7 @@ module Goosebot
       wheredidthesodago
       interestingasfuck
       showerthoughts
-    ]
+    ].freeze
 
     def self.random_tag
       TAGS[rand(TAGS.count)]
