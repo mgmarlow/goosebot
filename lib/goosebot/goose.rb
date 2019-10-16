@@ -18,13 +18,5 @@ module Goosebot
       interestingasfuck
       showerthoughts
     ].freeze
-
-    def self.random_tag
-      TAGS[rand(TAGS.count)]
-    end
-
-    def self.random_subreddit
-      SUBREDDITS[rand(SUBREDDITS.count)]
-    end
   end
 end
