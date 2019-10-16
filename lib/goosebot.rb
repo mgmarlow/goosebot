@@ -21,7 +21,11 @@ module Goosebot
         gif = random_gif(options: {
                            tag: Goose.random_tag
                          })
-        event.respond gif.data.url
+        event.respond(gif.data.url)
+      end
+
+      bot_client.message(from: 'GoooooooOOOoooooose') do |event|
+        event.message.react(bot_client.emoji.sample.to_reaction)
       end
 
       bot_client.run
