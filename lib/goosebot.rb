@@ -24,12 +24,12 @@ module Goosebot
         event.respond(gif.data.url)
       end
 
-      bot_client.message(from: ['Goose', 'GooseBot']) do |event|
+      bot_client.message(from: %w[Goose GooseBot]) do |event|
         event.message.react(bot_client.emoji.sample.to_reaction)
       end
 
       bot_client.message(from: 'Telyl') do |event|
-        event.respond("Am I a sentient being?")
+        event.respond('Am I a sentient being?')
       end
 
       bot_client.run
