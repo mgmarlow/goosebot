@@ -3,10 +3,12 @@
 require 'dotenv/load'
 require 'discordrb'
 require 'GiphyClient'
+require 'redd'
 
 require 'goosebot/version'
 require 'goosebot/bot_client'
 require 'goosebot/giphy_client'
+require 'goosebot/reddit_client'
 require 'goosebot/goose'
 
 module Goosebot
@@ -14,14 +16,18 @@ module Goosebot
 
   class Bot
     include GiphyClient
+    include RedditClient
     include BotClient
 
     def run
       bot_client.message(content: '!gooseme') do |event|
-        gif = random_gif(options: {
-                           tag: Goose.random_tag
-                         })
-        event.respond(gif.data.url)
+        response_url = if rand(2) == 1
+          hot_posts(Goose.random_subreddit).sample.url
+        else
+          random_gif(options: { tag: Goose.random_tag }).data.url
+        end
+
+        event.respond(response_url)
       end
 
       bot_client.message(from: %w[Goose GooseBot]) do |event|

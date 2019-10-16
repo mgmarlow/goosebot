@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'discordrb'
   spec.add_dependency 'dotenv'
   spec.add_dependency 'GiphyClient'
+  spec.add_dependency 'redd'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'pry'
