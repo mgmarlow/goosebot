@@ -24,7 +24,7 @@ module Goosebot
         event.respond(gif.data.url)
       end
 
-      bot_client.message(from: 'GoooooooOOOoooooose') do |event|
+      bot_client.message(from: 'Goose') do |event|
         event.message.react(bot_client.emoji.sample.to_reaction)
       end
 
