@@ -9,7 +9,6 @@ module Goosebot
       doughnut
       butts
       bouldering
-      yoga
     ].freeze
 
     def self.random_tag
