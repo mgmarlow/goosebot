@@ -18,5 +18,15 @@ module Goosebot
       interestingasfuck
       showerthoughts
     ].freeze
+
+    class << self
+      def random_tag
+        TAGS.sample
+      end
+
+      def random_subreddit
+        SUBREDDITS.sample
+      end
+    end
   end
 end

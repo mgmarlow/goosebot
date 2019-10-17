@@ -22,9 +22,9 @@ module Goosebot
     def run
       bot_client.message(content: '!gooseme') do |event|
         response_url = if rand(2) == 1
-          hot_posts(Goose::SUBREDDITS.sample).sample.url
+          hot_posts(Goose.random_subreddit).sample.url
         else
-          random_gif(options: { tag: Goose::TAGS.sample }).data.url
+          random_gif(options: { tag: Goose.random_tag }).data.url
         end
 
         event.respond(response_url)
