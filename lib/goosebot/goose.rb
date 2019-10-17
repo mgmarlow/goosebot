@@ -16,7 +16,6 @@ module Goosebot
       holdmybeer
       wheredidthesodago
       interestingasfuck
-      showerthoughts
     ].freeze
 
     class << self
