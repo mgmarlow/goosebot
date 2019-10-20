@@ -9,7 +9,6 @@ require 'redd'
 
 require 'goosebot/version'
 require 'goosebot/request'
-require 'goosebot/bot_client'
 require 'goosebot/giphy_client'
 require 'goosebot/reddit_client'
 require 'goosebot/advice_client'
@@ -21,19 +20,24 @@ module Goosebot
   class Bot
     include GiphyClient
     include RedditClient
-    include BotClient
     include AdviceClient
 
+    attr_reader :bot
+
+    def initialize
+      @bot = Discordrb::Bot.new(token: ENV['DISCORD_BOT_TOKEN'])
+    end
+
     def run
-      bot_client.message(content: '!gooseme') do |event|
+      bot.message(content: '!gooseme') do |event|
         event.respond(random_message)
       end
 
-      bot_client.message(from: %w[Goose GooseBot]) do |event|
-        event.message.react(bot_client.emoji.sample.to_reaction)
+      bot.message(from: %w[Goose GooseBot]) do |event|
+        event.message.react(bot.emoji.sample.to_reaction)
       end
 
-      bot_client.run
+      bot.run
     end
 
     def random_message
