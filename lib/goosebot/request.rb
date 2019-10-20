@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Goosebot
   class Request
     class << self
@@ -14,9 +16,9 @@ module Goosebot
         end
 
         case resp
-        when Net::HTTPSuccess then
+        when Net::HTTPSuccess
           JSON.parse(resp.body)
-        end      
+        end
       end
     end
   end

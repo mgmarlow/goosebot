@@ -11,4 +11,4 @@ A horrible discord bot that posts inside-joke gifs.
 
 ## TODO:
 
-- [ ] instagram support
+- [brewerydb](https://www.brewerydb.com/developers)

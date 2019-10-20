@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Goosebot
   module AdviceClient
     def give_advice
