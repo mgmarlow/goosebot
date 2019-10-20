@@ -2,6 +2,12 @@
 
 module Goosebot
   module RedditClient
+    def hot_posts(subreddit)
+      reddit_client.subreddit(subreddit).hot.children
+    end
+
+    private
+
     def reddit_client
       @reddit_client ||= Redd.it(
         user_agent: "Goosebot:v0.1.0 (by /u/#{ENV['REDDIT_USERNAME']})",
@@ -10,10 +16,6 @@ module Goosebot
         username:   ENV['REDDIT_USERNAME'],
         password:   ENV['REDDIT_PASSWORD']
       )
-    end
-
-    def hot_posts(subreddit)
-      reddit_client.subreddit(subreddit).hot.children
     end
   end
 end

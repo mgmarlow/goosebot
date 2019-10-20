@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
+require 'net/http'
+require 'json'
 require 'dotenv/load'
 require 'discordrb'
 require 'GiphyClient'
 require 'redd'
 
 require 'goosebot/version'
+require 'goosebot/request'
 require 'goosebot/bot_client'
 require 'goosebot/giphy_client'
 require 'goosebot/reddit_client'
+require 'goosebot/advice_client'
 require 'goosebot/goose'
 
 module Goosebot
@@ -18,17 +22,11 @@ module Goosebot
     include GiphyClient
     include RedditClient
     include BotClient
+    include AdviceClient
 
     def run
       bot_client.message(content: '!gooseme') do |event|
-        # response_url = if rand(2) == 1
-        #   hot_posts(Goose.random_subreddit).sample.url
-        # else
-        #   random_gif(options: { tag: Goose.random_tag }).data.url
-        # end
-        response_url = random_gif(options: { tag: Goose.random_tag }).data.url
-
-        event.respond(response_url)
+        event.respond(random_message)
       end
 
       bot_client.message(from: %w[Goose GooseBot]) do |event|
@@ -36,6 +34,19 @@ module Goosebot
       end
 
       bot_client.run
+    end
+
+    def random_message
+      case rand(100)
+      when 0..70
+        random_gif(options: { tag: Goose.random_tag }).data.url
+      else
+        advice = give_advice
+        "🙏 #{advice} 🙏"
+      end
+
+      # TODO: Why does reddit fail on the server?
+      # hot_posts(Goose.random_subreddit).sample.url
     end
   end
 end
