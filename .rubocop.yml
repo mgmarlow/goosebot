@@ -7,3 +7,9 @@ Layout/AlignHash:
   EnforcedColonStyle:
     - table
     - key
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false

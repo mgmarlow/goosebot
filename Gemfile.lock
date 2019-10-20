@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    goosebot (0.1.0)
+    goosebot (0.32.0)
       GiphyClient
       discordrb
       dotenv

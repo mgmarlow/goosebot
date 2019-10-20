@@ -10,7 +10,6 @@ require 'redd'
 require 'goosebot/version'
 require 'goosebot/request'
 require 'goosebot/giphy_client'
-require 'goosebot/reddit_client'
 require 'goosebot/advice_client'
 require 'goosebot/goose'
 
@@ -19,7 +18,6 @@ module Goosebot
 
   class Bot
     include GiphyClient
-    include RedditClient
     include AdviceClient
 
     attr_reader :bot
@@ -30,29 +28,36 @@ module Goosebot
 
     def run
       bot.message(content: '!gooseme') do |event|
-        event.respond(random_message)
+        message = <<~DOC
+          goosebot v#{VERSION}
+          Usage:
+          !gooseme gif:\t\tNick's favorite gifs
+          !gooseme advice: Advice straight from Nick's heart.
+        DOC
+
+        event.respond(message)
       end
+
+      bot.message(content: '!gooseme gif') do |event|
+        event.respond(random_gif(options: { tag: Goose.random_tag }).data.url)
+      end
+
+      bot.message(content: '!gooseme advice') do |event|
+        advice = give_advice
+        event.respond("🙏 #{advice} 🙏") unless advice.nil?
+      end
+
+      # TODO: underlords stats
+      # https://steamdb.info/app/1046930/
+      # https://www.openunderlords.com/en/
+      # bot.message(content: '!gooseme stats') do |event|
+      # end
 
       bot.message(from: %w[Goose GooseBot]) do |event|
         event.message.react(bot.emoji.sample.to_reaction)
       end
 
       bot.run
-    end
-
-    def random_message
-      case rand(100)
-      when 0..70
-        random_gif(options: { tag: Goose.random_tag }).data.url
-      else
-        advice = give_advice
-        return if advice.nil?
-
-        "🙏 #{advice} 🙏"
-      end
-
-      # TODO: Why does reddit fail on the server?
-      # hot_posts(Goose.random_subreddit).sample.url
     end
   end
 end
