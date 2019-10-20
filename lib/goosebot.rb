@@ -46,6 +46,8 @@ module Goosebot
         random_gif(options: { tag: Goose.random_tag }).data.url
       else
         advice = give_advice
+        return if advice.nil?
+
         "🙏 #{advice} 🙏"
       end
 

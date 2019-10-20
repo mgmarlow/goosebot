@@ -16,8 +16,6 @@ module Goosebot
         case resp
         when Net::HTTPSuccess then
           JSON.parse(resp.body)
-        else
-          'foo'
         end      
       end
     end
