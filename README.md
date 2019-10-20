@@ -8,3 +8,8 @@ A horrible discord bot that posts inside-joke gifs.
 
 1. Invite [goosebot](https://discordapp.com/oauth2/authorize?&client_id=632969496986124299&scope=bot&permissions=510016) to your discord server.
 2. Post `!gooseme` in the channel for a list of commands.
+
+# Reference
+
+Underlords stats courtesy of [underlordsconstants](https://github.com/odota/underlordsconstants).
+Data is pulled from the Steam DB [game tracking records](https://github.com/SteamDatabase/GameTracking-Underlords).

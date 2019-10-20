@@ -29,10 +29,10 @@ module Goosebot
     def run
       bot.message(content: '!gooseme') do |event|
         message = <<~DOC
-          goosebot v#{VERSION}
-          Usage:
-          !gooseme gif:\t\tNick's favorite gifs
-          !gooseme advice: Advice straight from Nick's heart.
+          v#{VERSION}
+          `!gooseme gif`:\t\t\tNick's favorite gifs.
+          `!gooseme advice`:\t Advice straight from Nick's heart.
+          `!gooseme build`:\t   Build your best underlords comp. and share it.
         DOC
 
         event.respond(message)
@@ -48,10 +48,18 @@ module Goosebot
       end
 
       # TODO: underlords stats
-      # https://steamdb.info/app/1046930/
-      # https://www.openunderlords.com/en/
       # bot.message(content: '!gooseme stats') do |event|
       # end
+
+      # TODO: underlords hero lookup
+      # bot.message(containing: /\[(.*?)\]/) do |event|
+        # TODO:
+        # event.respond('foo')
+      # end
+
+      bot.message(content: '!gooseme build') do |event|
+        event.respond('https://underlords.app/build')
+      end
 
       bot.message(from: %w[Goose GooseBot]) do |event|
         event.message.react(bot.emoji.sample.to_reaction)
