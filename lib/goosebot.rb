@@ -5,10 +5,11 @@ require 'json'
 require 'dotenv/load'
 require 'discordrb'
 require 'GiphyClient'
-require 'redd'
+require 'pry'
 
-require 'goosebot/version'
 require 'goosebot/request'
+require 'goosebot/version'
+require 'goosebot/underlords_client'
 require 'goosebot/giphy_client'
 require 'goosebot/advice_client'
 require 'goosebot/goose'
@@ -19,6 +20,7 @@ module Goosebot
   class Bot
     include GiphyClient
     include AdviceClient
+    include UnderlordsClient
 
     attr_reader :bot
 
@@ -32,7 +34,9 @@ module Goosebot
           v#{VERSION}
           `!gooseme gif`:\t\t\tNick's favorite gifs.
           `!gooseme advice`:\t Advice straight from Nick's heart.
-          `!gooseme build`:\t   Build your best underlords comp. and share it.
+          `!gooseme build`:\t   Build your best underlords comp and share it.
+
+          Call out DOTA underlords heroes with [heroname].
         DOC
 
         event.respond(message)
@@ -51,11 +55,16 @@ module Goosebot
       # bot.message(content: '!gooseme stats') do |event|
       # end
 
-      # TODO: underlords hero lookup
-      # bot.message(containing: /\[(.*?)\]/) do |event|
-        # TODO:
-        # event.respond('foo')
-      # end
+      bot.message(containing: /\[(.*?)\]/) do |event|
+        event.message.content.scan(/\[(.*?)\]/).each do |hero_name|
+          hero_name = hero_name.first.downcase
+
+          if underlords_client.hero_names.include?(hero_name)
+            hero = underlords_client.heroes.detect { |h| h.name.downcase == hero_name }
+            event.respond(hero.preview)
+          end
+        end
+      end
 
       bot.message(content: '!gooseme build') do |event|
         event.respond('https://underlords.app/build')
