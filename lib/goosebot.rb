@@ -5,7 +5,6 @@ require 'json'
 require 'dotenv/load'
 require 'discordrb'
 require 'GiphyClient'
-require 'pry'
 
 require 'goosebot/request'
 require 'goosebot/version'
