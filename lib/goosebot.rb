@@ -30,12 +30,17 @@ module Goosebot
     def run
       bot.message(content: '!gooseme') do |event|
         message = <<~DOC
-          v#{VERSION}
-          `!gooseme gif`:\t\t\tNick's favorite gifs.
-          `!gooseme advice`:\t Advice straight from Nick's heart.
-          `!gooseme build`:\t   Build your best underlords comp and share it.
+          ```
+          goosebot v#{VERSION}
+
+          commands
+          -----------------------------------------------------
+          !gooseme gif:    Nick's favorite gifs.
+          !gooseme advice: Advice straight from Nick's heart.
+          -----------------------------------------------------
 
           Call out DOTA underlords heroes with [heroname].
+          ```
         DOC
 
         event.respond(message)

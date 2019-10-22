@@ -16,13 +16,18 @@ module Goosebot
                        .join('\n')
 
         <<~DATA
-          #{name}
-          alignment: #{keywords}
-          cost: #{cost}
-          dmg: [#{damage_min.join(', ')}] - [#{damage_max.join(', ')}]
-          armor: #{armor}
+          ```
+          #{name} (#{keywords})
+          -------------------------
+
+          cost:   #{cost}
+          armor:  #{armor}
+          damage: [#{damage_min.join(', ')}] - [#{damage_max.join(', ')}]
+          health: #{health}
+
 
           #{ability_text}
+          ```
         DATA
       end
     end
